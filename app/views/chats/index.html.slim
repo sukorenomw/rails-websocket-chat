@@ -1,0 +1,11 @@
+div.row.col-md-8.col-md-offset-2
+  h1 ChatApp
+
+  div.panel.panel-default
+    - if @messages.any?
+      div.panel-body id="messages"
+        = render partial: 'message', collection: @messages
+    - else
+      div.panel-body.hidden id="messages"
+
+  = render partial: 'form', locals: { message: @message }
