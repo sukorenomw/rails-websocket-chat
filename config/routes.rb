@@ -4,4 +4,5 @@ Rails.application.routes.draw do
 
   root "chats#index"
   resources :messages
+  post '/joined', to: "join#joined"
 end

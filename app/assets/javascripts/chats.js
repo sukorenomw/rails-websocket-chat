@@ -1,5 +1,17 @@
 $(document).on('turbolinks:load', function() {
-    submitNewMessage();
+  submitNewMessage();
+  broadcastJoinMessage();
+  window.addEventListener("beforeunload", function(event) {
+    event.preventDefault();
+    $.ajax({
+      url: "/joined",
+      data: { username: $("#username_field").val(), actions: "left" },
+      type: 'POST',
+      success: function(data){
+        console.log("left");
+      }
+    });
+  });
 });
 
 function submitNewMessage(){
@@ -10,4 +22,15 @@ function submitNewMessage(){
                     return false;
                  }
         });
+}
+
+function broadcastJoinMessage(){
+  $.ajax({
+    url: "/joined",
+    data: { username: $("#username_field").val(), actions: "join" },
+    type: 'POST',
+    success: function(data){
+      console.log("joinned");
+    }
+  });
 }

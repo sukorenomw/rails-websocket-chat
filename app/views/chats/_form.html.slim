@@ -2,5 +2,5 @@
   = f.label :message
     | message :
   = f.text_area :content, class: "form-control", data: {textarea: "message"}
-  = f.hidden_field :username, value: params[:username]
+  = f.hidden_field :username, value: params[:username] || "default", id: "username_field"
   = f.submit "send", class: "btn btn-primary", style: "display: none", data: {send: "message"}
